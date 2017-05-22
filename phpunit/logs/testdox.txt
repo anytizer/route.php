@@ -1,9 +1,9 @@
 tests\controllers
- [ ] Controller name
- [ ] Controller name digits removed
- [ ] Controller name digits preserved
- [ ] Controller name digits removed and preserved
- [ ] Controller special characters removed
+ [x] Controller name
+ [x] Controller name digits removed
+ [x] Controller name digits preserved
+ [x] Controller name digits removed and preserved
+ [x] Controller special characters removed
 
 tests\methods
  [x] Method name
