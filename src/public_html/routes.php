@@ -80,9 +80,6 @@ switch(count($routePaths))
         break;
 }
 
-# Let destructor echo it
-#echo $result;
-
+# Let destructor print out the output
 // routing database
 // controller, method, data
-#print_r($_GET);

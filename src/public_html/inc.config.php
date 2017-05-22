@@ -1,10 +1,6 @@
 <?php
 #header("Content-Type: text/plain");
 
-#echo print_r($_POST, true);
-#echo print_r($_GET, true);
-#echo print_r($_SERVER, true);
-
 define("__LIBRARIES__", realpath(dirname(__FILE__)."/../libraries"));
 #die(__LIBRARIES__);
 

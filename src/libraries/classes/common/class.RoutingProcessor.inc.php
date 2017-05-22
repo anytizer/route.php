@@ -32,9 +32,8 @@ class RoutingProcessor
             $result = "Controller Class not found. [{$controller_name}]";
             $envelope->not_found($result);
         }
-        #echo "Process One: {$controller_name}->{$method}();";
+
         return $envelope;
-        #print_r(func_get_args());
     }
 
     // [$_GET]
@@ -45,7 +44,6 @@ class RoutingProcessor
         $envelope->not_found($error);
 
         return $envelope;
-        #print_r(func_get_args());
     }
 
     public function process1(string $package_name): envelope
@@ -91,11 +89,7 @@ class RoutingProcessor
 
         $envelope = $this->process($process_name, $controller_name, $method_name, $data);
         return $envelope;
-
-        #echo "Process Two: {$controller_name}->{$method}();";
-        #return $result;
-        #print_r(func_get_args());
-    }
+   }
 
     /**
      * src/notes/delete/7 ==> notesController.deleteAction(7)
@@ -114,10 +108,6 @@ class RoutingProcessor
 
         $envelope = $this->process($package_name, $controller_name, $method_name, $data);
         return $envelope;
-        #echo "Process Three: {$controller_name}->{$method}();";
-        # return $result;
-        #print_r(func_get_args());echo "Process ";
-        #print_r(func_get_args());
     }
 
     /**
