@@ -47,25 +47,25 @@ $RoutingProcessor = new RoutingProcessor();
 switch(count($routePaths))
 {
     case 0:
-		// home page; nothing was supplied
+        // home page; nothing was supplied
         $result = $RoutingProcessor->process0();
         //$result = die("Empty: Use default controller, default method");
         break;
 
     case 1:
-		// package name only
+        // package name only
         // controller name only
-		// do not allow
+        // do not allow
         $result = $RoutingProcessor->process1($routePaths[$packageIndex]);
         break;
 
     case 2:
-		// controller name
+        // controller name
         $result = $RoutingProcessor->process2($routePaths[$packageIndex], $routePaths[$controllerIndex]);
         break;
 
-	case 3:
-		// action specified
+    case 3:
+        // action specified
         $result = $RoutingProcessor->process3($routePaths[$packageIndex], $routePaths[$controllerIndex], $routePaths[$methodIndex]);
         break;
 
@@ -80,7 +80,8 @@ switch(count($routePaths))
         break;
 }
 
-echo $result;
+# Let destructor echo it
+#echo $result;
 
 // routing database
 // controller, method, data

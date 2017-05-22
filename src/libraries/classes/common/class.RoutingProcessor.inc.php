@@ -1,11 +1,14 @@
 <?php
 namespace common;
-use samples\NotesController;
+use common\envelope;
+use office\NotesController;
 
 class RoutingProcessor
 {
-    private function process(string $package_name, string $controller_name, string $method, $data)
+    private function process(string $package_name, string $controller_name, string $method, $data): envelope
     {
+        $envelope = new envelope();
+
         $rn = new RoutingNamifier();
 
         $result = null;
@@ -16,31 +19,42 @@ class RoutingProcessor
             $controller = new $controller_name();
             if(method_exists($controller, $method)) {
                 $result = $controller->$method();
+                $envelope->found($result);
             }
             else
             {
                 $result = "Action method not found. [{$method}]";
+                $envelope->found($result);
             }
         }
         else
         {
             $result = "Controller Class not found. [{$controller_name}]";
+            $envelope->not_found($result);
         }
         #echo "Process One: {$controller_name}->{$method}();";
-        return $result;
+        return $envelope;
         #print_r(func_get_args());
     }
 
     // [$_GET]
-    public function process0()
+    public function process0(): envelope
     {
-        return "Empty: Use default controller, default method";
+        $error = "Empty: Use default controller, default method";
+        $envelope = new envelope();
+        $envelope->not_found($error);
+
+        return $envelope;
         #print_r(func_get_args());
     }
 
-    public function process1(string $package_name)
+    public function process1(string $package_name): envelope
     {
-        return "Empty: Use default package.";
+        $error = "Empty: Use default package.";
+        $envelope = new envelope();
+        $envelope->not_found($error);
+
+        return $envelope;
     }
 
     /**
@@ -49,14 +63,15 @@ class RoutingProcessor
      *
      * @param string $package_name
      * @param string $controller_name
-     * @return null|string
+     * @return \common\envelope
      */
-    public function process2(string $package_name, string $controller_name)
+    public function process2(string $package_name, string $controller_name): envelope
     {
         $method_name = "indexAction";
         $data = null;
 
-        return $this->process($package_name, $controller_name, $method_name, $data);
+        $envelope = $this->process($package_name, $controller_name, $method_name, $data);
+        return $envelope;
     }
 
     /**
@@ -66,15 +81,16 @@ class RoutingProcessor
      * @param string $process_name
      * @param string $controller_name
      * @param string $method_name
-     * @return null|string
+     * @return \common\envelope
      */
-    public function process3(string $process_name, string $controller_name, string $method_name)
+    public function process3(string $process_name, string $controller_name, string $method_name): envelope
     {
         $rn = new RoutingNamifier();
         $method_name = $rn->methodName($method_name);
         $data = null;
 
-        return $this->process($process_name, $controller_name, $method_name, $data);
+        $envelope = $this->process($process_name, $controller_name, $method_name, $data);
+        return $envelope;
 
         #echo "Process Two: {$controller_name}->{$method}();";
         #return $result;
@@ -89,22 +105,31 @@ class RoutingProcessor
      * @param string $controller_name
      * @param string $method_name
      * @param $data
-     * @return null|string
+     * @return \common\envelope
      */
-    public function process4(string $package_name, string $controller_name, string $method_name, $data)
+    public function process4(string $package_name, string $controller_name, string $method_name, $data): envelope
     {
         $rn = new RoutingNamifier();
         $method_name = $rn->methodName($method_name);
 
-        return $this->process($package_name, $controller_name, $method_name, $data);
+        $envelope = $this->process($package_name, $controller_name, $method_name, $data);
+        return $envelope;
         #echo "Process Three: {$controller_name}->{$method}();";
         # return $result;
         #print_r(func_get_args());echo "Process ";
         #print_r(func_get_args());
     }
 
-    public function process5(): string
+    /**
+     * @return \common\envelope
+     */
+    public function process5(): envelope
     {
-        return "No support for 5+ parameters";
+        $error = "No support for 5+ parameters";
+
+        $envelope = new envelope();
+        $envelope->not_found($error);
+
+        return $envelope;
     }
 }
