@@ -3,24 +3,22 @@ header("Content-Type: text/plain");
 #echo print_r($_GET, true);
 #echo print_r($_SERVER, true);
 
-require_once("./libraries/classes/backend/class.spl_include.inc.php");
-spl_autoload_register(array(new \backend\spl_include("./libraries/classes/classes"), "namespaced_inc_dot"));
-spl_autoload_register(array(new \backend\spl_include("./libraries/classes/classes"), "psr0"));
+define("__LIBRARIES__", dirname(__FILE__)."/libraries");
 
-require_once("libraries/classes/common/class.RoutingConfigurations.inc.php");
-require_once("libraries/classes/common/class.RoutingNamifier.inc.php");
-require_once("libraries/classes/common/class.RoutingProcessor.inc.php");
+require_once(__LIBRARIES__."/classes/backend/class.spl_include.inc.php");
+spl_autoload_register(array(new \backend\spl_include(__LIBRARIES__."/classes"), "namespaced_inc_dot"));
+#spl_autoload_register(array(new \backend\spl_include(__LIBRARIES__."/classes"), "psr0"));
+
+#require_once("libraries/classes/common/class.RoutingConfigurations.inc.php");
+#require_once("libraries/classes/common/class.RoutingNamifier.inc.php");
+#require_once("libraries/classes/common/class.RoutingProcessor.inc.php");
 
 # Active controller ready for autoload
-require_once("libraries/classes/sample/class.Controller.inc.php");
-require_once("libraries/classes/sample/class.NotesController.inc.php");
+#require_once("libraries/classes/samples/class.Controller.inc.php");
+#require_once("libraries/classes/samples/class.NotesController.inc.php");
 
 use common\RoutingConfigurations;
-use common\RoutingNamifier;
 use common\RoutingProcessor;
-
-use samples\NotesController;
-
 /**
  * @see http://localhost/angular/libraries/routing.php/src
  * @see http://localhost/angular/libraries/routing.php/src/
