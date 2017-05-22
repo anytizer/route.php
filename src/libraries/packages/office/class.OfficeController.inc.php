@@ -7,7 +7,9 @@ namespace office;
  * Class OfficeController
  * @package office
  */
-class OfficeController
+abstract class OfficeController
 {
-
+    abstract public function indexAction();
+    abstract public function addAction();
+    abstract public function deleteAction();
 }
