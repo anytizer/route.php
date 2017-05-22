@@ -18,19 +18,13 @@ use common\RoutingProcessor;
  * @see http://routes.example.com:9090/office/notes/add/
  * @see http://routes.example.com:9090/office/notes/add/?sdf8=&sdf&sdaf=df
  */
-#print_r($_GET);
 
 $parameters_index = "_prmtrs_";
 $_GET[$parameters_index] = $_GET[$parameters_index]??""; // cli patch
 $route = preg_replace("/[^\\/\\-\\_\\.a-zA-Z0-9]/is", "", $_GET[$parameters_index]);
 unset($_GET[$parameters_index]);
-#print_r($route);
 
-#$routePaths = explode("/", $route);
 $routePaths = array_filter(explode("/", $route));
-#print_r($routePaths);
-
-#print_r($_GET);
 
 /**
  * Breakdown the URI string into controller, action and data
@@ -75,11 +69,5 @@ switch(count($routePaths))
     case 5:
     default:
         $result = $RoutingProcessor->process5();
-        #print_r($_GET);
-        #print_r("Too many parameters - call not implemented.");
         break;
 }
-
-# Let destructor print out the output
-// routing database
-// controller, method, data
