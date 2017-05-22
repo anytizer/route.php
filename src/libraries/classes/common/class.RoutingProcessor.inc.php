@@ -41,7 +41,7 @@ class RoutingProcessor
      */
     public function process0(): envelope
     {
-        $error = "Empty: Use default controller, default method";
+        $error = "Home (Empty): Use default package, controller, and method.";
         $envelope = new envelope();
         $envelope->not_found($error);
 
@@ -56,7 +56,7 @@ class RoutingProcessor
      */
     public function process1(string $package_name): envelope
     {
-        $error = "Empty: Use default package.";
+        $error = "Package: Use default package.";
         $envelope = new envelope();
         $envelope->not_found($error);
 

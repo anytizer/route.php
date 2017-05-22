@@ -30,15 +30,11 @@ $RoutingProcessor = new RoutingProcessor();
 switch(count($routePaths))
 {
     case 0:
-        // home page; nothing was supplied
+        // visiting home page; nothing was supplied
         $result = $RoutingProcessor->process0();
-        //$result = die("Empty: Use default controller, default method");
         break;
 
     case 1:
-        // package name only
-        // controller name only
-        // do not allow
         $result = $RoutingProcessor->process1($routePaths[$packageIndex]);
         break;
 
