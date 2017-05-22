@@ -3,6 +3,10 @@ header("Content-Type: text/plain");
 #echo print_r($_GET, true);
 #echo print_r($_SERVER, true);
 
+require_once("./libraries/classes/backend/class.spl_include.inc.php");
+spl_autoload_register(array(new \backend\spl_include("./libraries/classes/classes"), "namespaced_inc_dot"));
+spl_autoload_register(array(new \backend\spl_include("./libraries/classes/classes"), "psr0"));
+
 require_once("libraries/classes/common/class.RoutingConfigurations.inc.php");
 require_once("libraries/classes/common/class.RoutingNamifier.inc.php");
 require_once("libraries/classes/common/class.RoutingProcessor.inc.php");
