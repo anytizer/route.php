@@ -4,12 +4,12 @@ use samples\NotesController;
 
 class RoutingProcessor
 {
-    private function process(string $controller_name, string $method, $data)
+    private function process(string $package_name, string $controller_name, string $method, $data)
     {
         $rn = new RoutingNamifier();
 
         $result = null;
-        $controller_name = $rn->controllerName($controller_name);
+        $controller_name = $rn->controllerName($package_name, $controller_name);
         if(class_exists($controller_name))
         {
             // look for default method
@@ -34,39 +34,47 @@ class RoutingProcessor
     // [$_GET]
     public function process0()
     {
+        return "Empty: Use default controller, default method";
         #print_r(func_get_args());
+    }
+
+    public function process1(string $package_name)
+    {
+        return "Empty: Use default package.";
     }
 
     /**
      * src/notes ==> notesController.indexAction()
      * http://localhost/angular/libraries/route.php/src/notes
      *
+     * @param string $package_name
      * @param string $controller_name
-     * @return null
+     * @return null|string
      */
-    public function process1(string $controller_name)
+    public function process2(string $package_name, string $controller_name)
     {
-        $method = "indexAction";
+        $method_name = "indexAction";
         $data = null;
 
-        return $this->process($controller_name, $method, $data);
+        return $this->process($package_name, $controller_name, $method_name, $data);
     }
 
     /**
      * src/notes/add ==> notesController.addAction()
      * http://localhost/angular/libraries/route.php/src/notes/add
      *
+     * @param string $process_name
      * @param string $controller_name
-     * @param string $method
-     * @return null
+     * @param string $method_name
+     * @return null|string
      */
-    public function process2(string $controller_name, string $method)
+    public function process3(string $process_name, string $controller_name, string $method_name)
     {
         $rn = new RoutingNamifier();
-        $method = $rn->methodName($method);
+        $method_name = $rn->methodName($method_name);
         $data = null;
 
-        return $this->process($controller_name, $method, $data);
+        return $this->process($process_name, $controller_name, $method_name, $data);
 
         #echo "Process Two: {$controller_name}->{$method}();";
         #return $result;
@@ -77,25 +85,26 @@ class RoutingProcessor
      * src/notes/delete/7 ==> notesController.deleteAction(7)
      * http://localhost/angular/libraries/route.php/src/notes/delete/7
      *
+     * @param string $package_name
      * @param string $controller_name
-     * @param string $method
+     * @param string $method_name
      * @param $data
-     * @return null
+     * @return null|string
      */
-    public function process3(string $controller_name, string $method, $data)
+    public function process4(string $package_name, string $controller_name, string $method_name, $data)
     {
         $rn = new RoutingNamifier();
-        $method = $rn->methodName($method);
+        $method_name = $rn->methodName($method_name);
 
-        return $this->process($controller_name, $method, $data);
+        return $this->process($package_name, $controller_name, $method_name, $data);
         #echo "Process Three: {$controller_name}->{$method}();";
         # return $result;
         #print_r(func_get_args());echo "Process ";
         #print_r(func_get_args());
     }
 
-    public function process4(): string
+    public function process5(): string
     {
-        return "No support for 4+ parameters";
+        return "No support for 5+ parameters";
     }
 }

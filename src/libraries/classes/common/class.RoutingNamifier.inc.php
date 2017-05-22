@@ -3,9 +3,15 @@ namespace common;
 
 class RoutingNamifier
 {
-    public function controllerName($controller): string
+    private function packageName(string $package_name): string
     {
-        $namespace = "samples";
+        return $package_name;
+    }
+
+    public function controllerName(string $package_name, $controller): string
+    {
+        //$namespace = "samples";
+        $namespace = $this->packageName($package_name);
 
         // notes => NotesController
         $controller = $this->sanitize($controller);
