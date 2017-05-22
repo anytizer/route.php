@@ -1,7 +1,5 @@
 <?php
 namespace common;
-use common\envelope;
-use office\NotesController;
 
 class RoutingProcessor
 {
@@ -36,7 +34,11 @@ class RoutingProcessor
         return $envelope;
     }
 
-    // [$_GET]
+    /**
+     * @see http://routes.example.com:9090/
+     *
+     * @return \common\envelope
+     */
     public function process0(): envelope
     {
         $error = "Empty: Use default controller, default method";
@@ -46,6 +48,12 @@ class RoutingProcessor
         return $envelope;
     }
 
+    /**
+     * @see http://routes.example.com:9090/office
+     *
+     * @param string $package_name
+     * @return \common\envelope
+     */
     public function process1(string $package_name): envelope
     {
         $error = "Empty: Use default package.";
@@ -56,8 +64,7 @@ class RoutingProcessor
     }
 
     /**
-     * src/notes ==> notesController.indexAction()
-     * http://localhost/angular/libraries/route.php/src/notes
+     * @see http://routes.example.com:9090/office/notes
      *
      * @param string $package_name
      * @param string $controller_name
@@ -73,8 +80,7 @@ class RoutingProcessor
     }
 
     /**
-     * src/notes/add ==> notesController.addAction()
-     * http://localhost/angular/libraries/route.php/src/notes/add
+     * @see http://routes.example.com:9090/office/notes/add
      *
      * @param string $process_name
      * @param string $controller_name
@@ -92,8 +98,7 @@ class RoutingProcessor
    }
 
     /**
-     * src/notes/delete/7 ==> notesController.deleteAction(7)
-     * http://localhost/angular/libraries/route.php/src/notes/delete/7
+     * http://routes.example.com:9090/office/notes/delete/7
      *
      * @param string $package_name
      * @param string $controller_name
@@ -111,11 +116,12 @@ class RoutingProcessor
     }
 
     /**
+     * @see http://routes.example.com:9090/office/notes/assign/78/91
      * @return \common\envelope
      */
     public function process5(): envelope
     {
-        $error = "No support for 5+ parameters";
+        $error = "No support for 5+ parameters. Too long parameters may ruin your API Design.";
 
         $envelope = new envelope();
         $envelope->not_found($error);

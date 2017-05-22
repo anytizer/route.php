@@ -19,7 +19,6 @@ class RoutingNamifier
         $controller = ucfirst($controller);
 
         $controller = "{$namespace}\\{$controller}Controller";
-
         return $controller;
     }
 
@@ -39,7 +38,6 @@ class RoutingNamifier
 
         // Remove digits appear in the first
         $name = preg_replace("/^[0-9]+/is", "", $name);
-
         return $name;
     }
 }

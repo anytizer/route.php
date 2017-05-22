@@ -7,17 +7,6 @@ require_once("inc.config.php");
 
 use common\RoutingConfigurations;
 use common\RoutingProcessor;
-/**
- * @see http://routes.example.com:9090/
- * @see http://routes.example.com:9090/
- * @see http://routes.example.com:9090/office
- * @see http://routes.example.com:9090/office/
- * @see http://routes.example.com:9090/office/notes
- * @see http://routes.example.com:9090/office/notes/
- * @see http://routes.example.com:9090/office/notes/add
- * @see http://routes.example.com:9090/office/notes/add/
- * @see http://routes.example.com:9090/office/notes/add/?sdf8=&sdf&sdaf=df
- */
 
 $parameters_index = "_prmtrs_";
 $_GET[$parameters_index] = $_GET[$parameters_index]??""; // cli patch
