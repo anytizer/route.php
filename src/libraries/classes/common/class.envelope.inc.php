@@ -12,7 +12,7 @@ class envelope
     /**
      * @var boolean
      */
-    public $status;
+    public $success;
 
     /**
      * mixed
@@ -23,7 +23,11 @@ class envelope
 	 * @var boolean Automatically echo/flush output
 	 */
 	private $auto_output;
-	
+
+    /**
+     * envelope constructor.
+     * @param bool $auto_output
+     */
 	public function __construct(bool $auto_output=true)
 	{
 		/**
@@ -35,20 +39,24 @@ class envelope
 	
 	/**
 	 * Everything completed normally
-	 */
+	 *
+     * @param $data
+     */
 	public function found($data)
 	{
-		$this->status = true;
+		$this->success = true;
 		$this->data = $data;
 	}
 	
 	/**
 	 * Oh, there was an error at server side
 	 * Client should handle this case
-	 */
+	 *
+     * @param $data
+     */
 	public function not_found($data)
 	{
-		$this->status = false;
+		$this->success = false;
 		$this->data = $data;
 	}
 	
@@ -57,9 +65,13 @@ class envelope
 	 */
 	public function output()
 	{
-		return json_encode($this);
+	    $output = json_encode($this);
+        return $output;
 	}
-	
+
+    /**
+     * Flushes the JSON output
+     */
 	public function __destruct()
 	{
 		if($this->auto_output === true)
@@ -69,7 +81,9 @@ class envelope
 				header("Content-Type: text/json");
 			}
 
-			echo $this->output();
+			$output = $this->output();
+
+            echo $output;
 			flush();
 		}
 	}
