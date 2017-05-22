@@ -1,0 +1,12 @@
+tests\controllers
+ [x] Controller name
+ [x] Controller name digits removed
+ [x] Controller name digits preserved
+ [x] Controller name digits removed and preserved
+ [x] Controller special characters removed
+
+tests\methods
+ [x] Method name
+ [x] Method name digits removed
+ [x] Method name digits preserved
+
