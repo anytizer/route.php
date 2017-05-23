@@ -11,30 +11,30 @@ class methodsTest extends TestCase
     {
     }
 
-	public function testMethodName()
+    public function testMethodName()
     {
-		$rn = new RoutingNamifier();
-		
-		$method = $rn->methodName("log");
-        
-		$this->assertEquals("logAction", $method);
+        $rn = new RoutingNamifier();
+
+        $method = $rn->methodName("log");
+
+        $this->assertEquals("logAction", $method);
     }
-	
-	public function testMethodNameDigitsRemoved()
+
+    public function testMethodNameDigitsRemoved()
     {
-		$rn = new RoutingNamifier();
-		
-		$method = $rn->methodName("123log");
-        
-		$this->assertEquals("logAction", $method);
+        $rn = new RoutingNamifier();
+
+        $method = $rn->methodName("123log");
+
+        $this->assertEquals("logAction", $method);
     }
-	
-	public function testMethodNameDigitsPreserved()
+
+    public function testMethodNameDigitsPreserved()
     {
-		$rn = new RoutingNamifier();
-		
-		$method = $rn->methodName("123log678");
-        
-		$this->assertEquals("log678Action", $method);
+        $rn = new RoutingNamifier();
+
+        $method = $rn->methodName("123log678");
+
+        $this->assertEquals("log678Action", $method);
     }
 }

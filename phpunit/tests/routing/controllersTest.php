@@ -15,58 +15,58 @@ class controllersTest extends TestCase
     {
         $package_name = "office";
         $controller_name = "notes";
-		$rn = new RoutingNamifier();
-		
-		$controller = $rn->controllerName($package_name, $controller_name);
-        
-		$this->assertEquals("office\\NotesController", $controller);
+        $rn = new RoutingNamifier();
+
+        $controller = $rn->controllerName($package_name, $controller_name);
+
+        $this->assertEquals("office\\NotesController", $controller);
     }
-	
-	public function testControllerNameDigitsRemoved()
+
+    public function testControllerNameDigitsRemoved()
     {
         $package_name = "office";
         $controller_name = "123notes";
 
-		$rn = new RoutingNamifier();
-		$controller = $rn->controllerName($package_name, $controller_name);
-        
-		$this->assertEquals("office\\NotesController", $controller);
+        $rn = new RoutingNamifier();
+        $controller = $rn->controllerName($package_name, $controller_name);
+
+        $this->assertEquals("office\\NotesController", $controller);
     }
-	
-	public function testControllerNameDigitsPreserved()
+
+    public function testControllerNameDigitsPreserved()
     {
         $package_name = "office";
         $controller_name = "notes678";
 
-		$rn = new RoutingNamifier();
-		
-		$controller = $rn->controllerName($package_name, $controller_name);
-        
-		$this->assertEquals("office\\Notes678Controller", $controller);
+        $rn = new RoutingNamifier();
+
+        $controller = $rn->controllerName($package_name, $controller_name);
+
+        $this->assertEquals("office\\Notes678Controller", $controller);
     }
 
-	public function testControllerNameDigitsRemovedAndPreserved()
+    public function testControllerNameDigitsRemovedAndPreserved()
     {
         $package_name = "office";
         $controller_name = "123notes678";
 
-		$rn = new RoutingNamifier();
-		
-		$controller = $rn->controllerName($package_name, $controller_name);
-        
-		$this->assertEquals("office\\Notes678Controller", $controller);
+        $rn = new RoutingNamifier();
+
+        $controller = $rn->controllerName($package_name, $controller_name);
+
+        $this->assertEquals("office\\Notes678Controller", $controller);
     }
-	
-	public function testControllerSpecialCharactersRemoved()
+
+    public function testControllerSpecialCharactersRemoved()
     {
         $package_name = "office";
         $controller_name = "my-notes";
 
         $rn = new RoutingNamifier();
-		
-		// src/my-notes/add/
-		$controller = $rn->controllerName($package_name, $controller_name);
-        
-		$this->assertEquals("office\\MynotesController", $controller);
+
+        // src/my-notes/add/
+        $controller = $rn->controllerName($package_name, $controller_name);
+
+        $this->assertEquals("office\\MynotesController", $controller);
     }
 }

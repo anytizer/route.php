@@ -20,6 +20,7 @@ class notesTest extends TestCase
         $listURL = "{$this->api}/office/notes/list";
         $relay = new relay();
         $data = $relay->fetch($listURL);
+
         $results = json_decode($data);
         #print_r($results);
 
@@ -34,6 +35,7 @@ class notesTest extends TestCase
         $listURL = "{$this->api}/office/notes/add";
         $relay = new relay();
         $data = $relay->fetch($listURL);
+
         $results = json_decode($data);
         # print_r($results);
 
@@ -48,6 +50,7 @@ class notesTest extends TestCase
         $listURL = "{$this->api}/office/notes/edit";
         $relay = new relay();
         $data = $relay->fetch($listURL);
+
         $results = json_decode($data);
         #print_r($results);
 
@@ -57,9 +60,11 @@ class notesTest extends TestCase
     public function testDeleteNote()
     {
         $delete_id = 7;
+
         $listURL = "{$this->api}/office/notes/delete/{$delete_id}";
         $relay = new relay();
         $data = $relay->fetch($listURL);
+
         $results = json_decode($data);
         #print_r($results);
 

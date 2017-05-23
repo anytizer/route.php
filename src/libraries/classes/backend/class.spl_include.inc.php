@@ -26,8 +26,8 @@ class spl_include
             }
         }
     }
-	
-	public function psr0(string $class)
+
+    public function psr0(string $class)
     {
         // for name-space based class access
         $chunks = explode("\\", $class);

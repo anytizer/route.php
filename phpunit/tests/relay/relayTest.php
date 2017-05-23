@@ -7,23 +7,23 @@ use common\relay;
  */
 class relayTest extends TestCase
 {
-	private $relay = null;
+    private $relay = null;
 
-	public function setup()
-	{
-		$_GET = array();
-		$_POST = array();
-		$this->relay = new relay();
-		//$this->relay->log(true);
-	}
+    public function setup()
+    {
+        $_GET = array();
+        $_POST = array();
+        $this->relay = new relay();
+        //$this->relay->log(true);
+    }
 
-	public function testCreateToken()
-	{
-		$this->markTestIncomplete();
-	}
-	
-	public function testValidateToken()
-	{
-		$this->markTestIncomplete();
-	}
+    public function testCreateToken()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testValidateToken()
+    {
+        $this->markTestIncomplete();
+    }
 }
