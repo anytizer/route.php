@@ -3,9 +3,9 @@ notes
  [x] Package access should err
  [x] Invalid method call should err
  [x] List notes
- [x] Add note
- [x] Edit note
- [x] Delete note
+ [ ] Add note
+ [ ] Edit note
+ [ ] Delete note
 
 relay
  [ ] Create token
