@@ -1,4 +1,7 @@
 notes
+ [x] Home page access should err
+ [x] Package access should err
+ [x] Invalid method call should err
  [x] List notes
  [x] Add note
  [x] Edit note

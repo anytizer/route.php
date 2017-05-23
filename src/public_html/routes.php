@@ -8,6 +8,9 @@ require_once("inc.config.php");
 use common\RoutingConfigurations;
 use common\RoutingProcessor;
 
+/**
+ * @see .htaccess
+ */
 $parameters_index = "_prmtrs_";
 $_GET[$parameters_index] = $_GET[$parameters_index]??""; // cli patch
 $route = preg_replace("/[^\\/\\-\\_\\.a-zA-Z0-9]/is", "", $_GET[$parameters_index]);

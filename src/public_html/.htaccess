@@ -1,3 +1,4 @@
+# @see routes.php for _prmtrs_ value
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 	RewriteRule (.*) routes.php?_prmtrs_=$1 [QSA,L]

@@ -15,14 +15,53 @@ class notesTest extends TestCase
         $_POST = array();
     }
 
+    public function testHomePageAccessShouldErr()
+    {
+        $listURL = "{$this->api}";
+        $relay = new relay();
+        $data = $relay->fetch($listURL);
+
+        $results = json_decode($data, true);
+        #print_r($results);
+
+        $this->assertTrue(key_exists("success", $results));
+        $this->assertFalse($results["success"]);
+    }
+
+    public function testPackageAccessShouldErr()
+    {
+        $listURL = "{$this->api}/office";
+        $relay = new relay();
+        $data = $relay->fetch($listURL);
+
+        $results = json_decode($data, true);
+        #print_r($results);
+
+        $this->assertTrue(key_exists("success", $results));
+        $this->assertFalse($results["success"]);
+    }
+
+    public function testInvalidMethodCallShouldErr()
+    {
+        $listURL = "{$this->api}/office/nothing";
+        $relay = new relay();
+        $data = $relay->fetch($listURL);
+
+        $results = json_decode($data, true);
+        #print_r($results);
+
+        $this->assertTrue(key_exists("success", $results));
+        $this->assertFalse($results["success"]);
+    }
+
     public function testListNotes()
     {
         $listURL = "{$this->api}/office/notes/list";
         $relay = new relay();
         $data = $relay->fetch($listURL);
 
-        $results = json_decode($data);
-        #print_r($results);
+        $results = json_decode($data, true);
+        print_r($results);
 
         $this->assertTrue(key_exists("success", $results));
     }

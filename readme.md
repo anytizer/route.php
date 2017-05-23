@@ -1,4 +1,5 @@
 # route.php
+
 Simple PHP/Apache routing
 
  * Intended to be of very small footprint.
@@ -6,7 +7,8 @@ Simple PHP/Apache routing
  * GET and POST data to be supplied extra.
  * Documented.
 
-## Patterns:
+## URL Patterns:
+
  * http://routes.example.com:9090/
  * http://routes.example.com:9090/office/
  * http://routes.example.com:9090/office/notes
@@ -15,4 +17,5 @@ Simple PHP/Apache routing
 
 ## Parameters
 
-   /Package/Controller/Method/Data
+    /Package/Controller/Method/Data
+
