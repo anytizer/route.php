@@ -38,10 +38,27 @@ class NotesController extends OfficeController
         return $_POST;
     }
 
+    public function editfailureAction()
+    {
+        return $_POST;
+    }
+
     public function deleteAction()
     {
         // src/notes/delete/7
         // http://routes.example.com:9090/office/notes/delete/8
         return "Notes - Delete action called";
+    }
+
+    public function deletefailureAction()
+    {
+        // delete attempt (do exactly as delete successful)
+        // failed
+
+        $success = array(
+            "success" => false,
+        );
+
+        return $success;
     }
 }

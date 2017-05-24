@@ -69,7 +69,7 @@ class notesTest extends TestCase
     /**
      * Get a list of active notes
      */
-    public function testListNotes()
+    public function testListNotesExample()
     {
         $listURL = "{$this->api}/office/notes/list";
 
@@ -90,7 +90,7 @@ class notesTest extends TestCase
     /**
      * Add a record
      */
-    public function testAddNote()
+    public function testAddNoteExample()
     {
         $_POST = array(
             "date" => "2017-05-22",
@@ -108,9 +108,29 @@ class notesTest extends TestCase
     }
 
     /**
+     * Add a record
+     */
+    public function testAddNoteFailureExample()
+    {
+        $_POST = array(
+            "date" => "2017-05-22",
+            "name" => "something",
+        );
+        $listURL = "{$this->api}/office/notes/addfailure";
+
+        $relay = new relay();
+        $data = $relay->fetch($listURL);
+        $results = json_decode($data, true);
+        #print_r($results);
+
+        $this->assertTrue(key_exists("success", $results));
+        $this->assertFalse($results["success"]);
+    }
+
+    /**
      * Edit a record
      */
-    public function testEditNote()
+    public function testEditNoteExample()
     {
         $_POST = array(
             "name" => "something",
@@ -123,13 +143,32 @@ class notesTest extends TestCase
         #print_r($results);
 
         $this->assertTrue(key_exists("success", $results));
-        $this->assertTrue($results["success"]);
+        $this->assertFalse($results["success"]);
+    }
+
+    /**
+     * Edit a record
+     */
+    public function testEditNoteFailureExample()
+    {
+        $_POST = array(
+            "name" => "something",
+        );
+        $listURL = "{$this->api}/office/notes/editfailure";
+
+        $relay = new relay();
+        $data = $relay->fetch($listURL);
+        $results = json_decode($data, true);
+        #print_r($results);
+
+        $this->assertTrue(key_exists("success", $results));
+        $this->assertFalse($results["success"]);
     }
 
     /**
      * Delete a record
      */
-    public function testDeleteNote()
+    public function testDeleteNoteSuccessfullyExample()
     {
         $delete_id = 7;
 
@@ -142,5 +181,23 @@ class notesTest extends TestCase
 
         $this->assertTrue(key_exists("success", $results));
         $this->assertTrue($results["success"]);
+    }
+
+    /**
+     * Delete a record
+     */
+    public function testDeleteNoteFailureExample()
+    {
+        $non_existing_delete_id = 77777;
+
+        $listURL = "{$this->api}/office/notes/deletefailure/{$non_existing_delete_id}";
+        $relay = new relay();
+        $data = $relay->fetch($listURL);
+
+        $results = json_decode($data, true);
+        print_r($results);
+
+        $this->assertTrue(key_exists("success", $results));
+        $this->assertFalse($results["success"]);
     }
 }
