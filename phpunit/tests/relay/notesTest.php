@@ -94,8 +94,8 @@ class notesTest extends TestCase
 
         $relay = new relay();
         $data = $relay->fetch($listURL);
-        $results = json_decode($data);
-        print_r($results);
+        $results = json_decode($data, true);
+        #print_r($results);
 
         $this->assertTrue(key_exists("success", $results));
         $this->assertTrue($results["success"]);
@@ -110,7 +110,7 @@ class notesTest extends TestCase
 
         $relay = new relay();
         $data = $relay->fetch($listURL);
-        $results = json_decode($data);
+        $results = json_decode($data, true);
         #print_r($results);
 
         $this->assertTrue(key_exists("success", $results));
@@ -125,7 +125,7 @@ class notesTest extends TestCase
         $relay = new relay();
         $data = $relay->fetch($listURL);
 
-        $results = json_decode($data);
+        $results = json_decode($data, true);
         #print_r($results);
 
         $this->assertTrue(key_exists("success", $results));
