@@ -9,6 +9,9 @@ class notesTest extends TestCase
 {
     private $api = "http://routes.example.com:9090";
 
+    /**
+     * Setup for every tests
+     */
     public function setup()
     {
         $_GET = array();
@@ -84,6 +87,9 @@ class notesTest extends TestCase
         // should be of valid class data
     }
 
+    /**
+     * Add a record
+     */
     public function testAddNote()
     {
         $_POST = array(
@@ -101,6 +107,9 @@ class notesTest extends TestCase
         $this->assertTrue($results["success"]);
     }
 
+    /**
+     * Edit a record
+     */
     public function testEditNote()
     {
         $_POST = array(
@@ -117,6 +126,9 @@ class notesTest extends TestCase
         $this->assertTrue($results["success"]);
     }
 
+    /**
+     * Delete a record
+     */
     public function testDeleteNote()
     {
         $delete_id = 7;

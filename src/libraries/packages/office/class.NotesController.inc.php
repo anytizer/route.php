@@ -33,6 +33,11 @@ class NotesController extends OfficeController
         //return "Notes - Add action called";
     }
 
+    public function editAction()
+    {
+        return $_POST;
+    }
+
     public function deleteAction()
     {
         // src/notes/delete/7

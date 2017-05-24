@@ -15,14 +15,15 @@ class RoutingProcessor
         {
             // look for default method
             $controller = new $controller_name();
-            if(method_exists($controller, $method)) {
+            if(method_exists($controller, $method))
+            {
                 $result = $controller->$method();
                 $envelope->found($result);
             }
             else
             {
                 $result = "Action method not found. [{$method}]";
-                $envelope->found($result);
+                $envelope->not_found($result);
             }
         }
         else

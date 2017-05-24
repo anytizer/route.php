@@ -23,3 +23,6 @@ tests\methods
  [x] Method name digits removed
  [x] Method name digits preserved
 
+ping
+ [x] Ping pong has timestamp
+
