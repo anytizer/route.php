@@ -4,8 +4,10 @@ Simple PHP/Apache routing
 
  * Intended to be of very small footprint.
  * Supports parsing in specific ways.
+ * Drop in creation of APIs.
+ * Wrapping output in an envelope with success status.
  * GET and POST data to be supplied extra.
- * Documented.
+ * Source code documented.
 
 ## URL Patterns:
 
