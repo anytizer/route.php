@@ -5,10 +5,10 @@ notes
  [x] List notes example
  [x] Add note example
  [x] Add note failure example
- [ ] Edit note example
- [ ] Edit note failure example
+ [x] Edit note example
+ [x] Edit note failure example
  [x] Delete note successfully example
- [ ] Delete note failure example
+ [x] Delete note failure example
 
 relay
  [ ] Create token

@@ -37,7 +37,12 @@ class NotesController extends OfficeController
 
     public function editAction()
     {
-        return $_POST;
+        $success = array(
+            "success" => true,
+            "original" => $_POST,
+        );
+
+        return $success;
     }
 
     /**
@@ -46,7 +51,12 @@ class NotesController extends OfficeController
      */
     public function editfailureAction()
     {
-        return $_POST;
+        $success = array(
+            "success" => false,
+            "original" => $_POST,
+        );
+
+        return $success;
     }
 
     public function deleteAction()
@@ -67,6 +77,7 @@ class NotesController extends OfficeController
 
         $success = array(
             "success" => false,
+            "original" => $_POST,
         );
 
         return $success;

@@ -3,7 +3,8 @@ use PHPUnit\Framework\TestCase;
 use common\relay;
 
 /**
- * Generate and Use tokens before actual API is being accessed
+ * Generate and Use tokens before actual API is being accessed.
+ * These tests run on the client side of the application.
  */
 class notesTest extends TestCase
 {
@@ -143,7 +144,8 @@ class notesTest extends TestCase
         #print_r($results);
 
         $this->assertTrue(key_exists("success", $results));
-        $this->assertFalse($results["success"]);
+        $this->assertTrue($results["success"]);
+        $this->assertTrue($results["data"]["success"]);
     }
 
     /**
@@ -157,12 +159,13 @@ class notesTest extends TestCase
         $listURL = "{$this->api}/office/notes/editfailure";
 
         $relay = new relay();
-        $data = $relay->fetch($listURL);
+		$data = $relay->fetch($listURL);
         $results = json_decode($data, true);
-        #print_r($results);
+        #print_r($results); die();
 
         $this->assertTrue(key_exists("success", $results));
-        $this->assertFalse($results["success"]);
+        #$this->assertFalse($results["success"]);
+        $this->assertFalse($results["data"]["success"]);
     }
 
     /**
@@ -173,7 +176,8 @@ class notesTest extends TestCase
         $delete_id = 7;
 
         $listURL = "{$this->api}/office/notes/delete/{$delete_id}";
-        $relay = new relay();
+        
+		$relay = new relay();
         $data = $relay->fetch($listURL);
 
         $results = json_decode($data, true);
@@ -191,13 +195,15 @@ class notesTest extends TestCase
         $non_existing_delete_id = 77777;
 
         $listURL = "{$this->api}/office/notes/deletefailure/{$non_existing_delete_id}";
-        $relay = new relay();
+        
+		$relay = new relay();
         $data = $relay->fetch($listURL);
 
         $results = json_decode($data, true);
-        print_r($results);
+        #print_r($results);
 
         $this->assertTrue(key_exists("success", $results));
-        $this->assertFalse($results["success"]);
+        #$this->assertFalse($results["success"]);
+		$this->assertFalse($results["data"]["success"]);
     }
 }
