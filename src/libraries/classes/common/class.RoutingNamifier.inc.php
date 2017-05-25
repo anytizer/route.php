@@ -8,18 +8,30 @@ class RoutingNamifier
         return $package_name;
     }
 
-    public function controllerName(string $package_name, $controller): string
+    /**
+     * Prefers single word as controller name
+     *
+     * @param string $package_name
+     * @param $controller_name
+     * @return string
+     */
+    public function controllerName(string $package_name, string $controller_name): string
     {
+        #die("Seeking: {$package_name} and {$controller_name}.");
         //$namespace = "samples";
         $namespace = $this->packageName($package_name);
+        #die("Seeking namespace: {$namespace}.");
 
         // notes => NotesController
-        $controller = $this->sanitize($controller);
-        $controller = strtolower($controller);
-        $controller = ucfirst($controller);
+        $controller_name = $this->sanitize($controller_name);
+        $controller_name = strtolower($controller_name);
+        $controller_name = preg_replace("/controller$/is", "", $controller_name);
+        $controller_name = ucfirst($controller_name);
+        #die("Seeking controller name: {$controller_name}.");
 
-        $controller = "{$namespace}\\{$controller}Controller";
-        return $controller;
+        $controller_name = "{$namespace}\\{$controller_name}Controller";
+        #die("Seeking namespaced controller name: {$controller_name}.");
+        return $controller_name;
     }
 
     public function methodName($method): string

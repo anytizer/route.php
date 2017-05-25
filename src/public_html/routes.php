@@ -29,21 +29,22 @@ $RoutingProcessor = new RoutingProcessor();
 switch(count($routePaths))
 {
     case 0:
-        // visiting home page; nothing was supplied
+        // visiting root page; nothing was supplied
         $result = $RoutingProcessor->process0();
         break;
 
     case 1:
+        // package home page
         $result = $RoutingProcessor->process1($routePaths[$packageIndex]);
         break;
 
     case 2:
-        // controller name
+        // controller home page
         $result = $RoutingProcessor->process2($routePaths[$packageIndex], $routePaths[$controllerIndex]);
         break;
 
     case 3:
-        // action specified
+        // action was specified
         $result = $RoutingProcessor->process3($routePaths[$packageIndex], $routePaths[$controllerIndex], $routePaths[$methodIndex]);
         break;
 

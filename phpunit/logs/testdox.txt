@@ -2,13 +2,13 @@ notes
  [x] Home page access should err
  [x] Package access should err
  [x] Invalid method call should err
- [ ] List notes example
- [ ] Add note example
+ [x] List notes example
+ [x] Add note example
  [x] Add note failure example
- [x] Edit note example
- [x] Edit note failure example
- [ ] Delete note successfully example
- [x] Delete note failure example
+ [ ] Edit note example
+ [ ] Edit note failure example
+ [x] Delete note successfully example
+ [ ] Delete note failure example
 
 relay
  [ ] Create token
@@ -27,5 +27,5 @@ tests\methods
  [x] Method name digits preserved
 
 ping
- [ ] Ping pong has timestamp
+ [x] Ping pong has timestamp
 

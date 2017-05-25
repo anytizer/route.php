@@ -3,6 +3,15 @@ namespace common;
 
 class RoutingProcessor
 {
+    /**
+     * Private processor
+     *
+     * @param string $package_name
+     * @param string $controller_name
+     * @param string $method
+     * @param $data
+     * @return envelope
+     */
     private function process(string $package_name, string $controller_name, string $method, $data): envelope
     {
         $envelope = new envelope();
@@ -10,7 +19,8 @@ class RoutingProcessor
         $rn = new RoutingNamifier();
 
         $result = null;
-        $controller_name = $rn->controllerName($package_name, $controller_name);
+        //$controller_name = $rn->controllerName($package_name, $controller_name); // already processed by the caller
+        #die("Controller class: {$controller_name}");
         if(class_exists($controller_name))
         {
             // look for default method
@@ -20,7 +30,7 @@ class RoutingProcessor
                 $result = $controller->$method($data);
                 $envelope->found($result);
                 /**
-                 * @todo If logically failed, send error
+                 * @todo When logically failed, send data with error flag
                  */
             }
             else
@@ -31,7 +41,7 @@ class RoutingProcessor
         }
         else
         {
-            $result = "Controller Class not found. [{$controller_name}]";
+            $result = "Controller class not found: [{$controller_name}]";
             $envelope->not_found($result);
         }
 
@@ -83,6 +93,7 @@ class RoutingProcessor
 
     /**
      * @see http://routes.example.com:9090/office/notes
+     * @see http://routes.example.com:9090/office/notes/list
      *
      * @param string $package_name
      * @param string $controller_name
