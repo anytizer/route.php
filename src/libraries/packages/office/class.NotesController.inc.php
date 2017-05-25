@@ -17,6 +17,8 @@ class NotesController extends OfficeController
         $notes = array(
             array("id" => 1, "name" => "One"),
             array("id" => 2, "name" => "Two"),
+            array("id" => 3, "name" => "Three"),
+            array("id" => 4, "name" => "Four"),
         );
 
         return $notes;
@@ -38,6 +40,10 @@ class NotesController extends OfficeController
         return $_POST;
     }
 
+    /**
+     * Edit API was called successfully but the out failed logically
+     * @return mixed
+     */
     public function editfailureAction()
     {
         return $_POST;
@@ -50,6 +56,10 @@ class NotesController extends OfficeController
         return "Notes - Delete action called";
     }
 
+    /**
+     * Delete API was called successfully but the out failed logically
+     * @return mixed
+     */
     public function deletefailureAction()
     {
         // delete attempt (do exactly as delete successful)

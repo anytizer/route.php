@@ -1,10 +1,6 @@
 <?php
 require_once("inc.config.php");
 
-# Active controller to be loaded on demand
-#require_once("libraries/classes/samples/class.OfficeController.inc.php");
-#require_once("libraries/classes/samples/class.NotesController.inc.php");
-
 use common\RoutingConfigurations;
 use common\RoutingProcessor;
 

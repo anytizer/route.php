@@ -3,7 +3,7 @@ namespace common;
 
 class RoutingNamifier
 {
-    private function packageName(string $package_name): string
+    public function packageName(string $package_name): string
     {
         return $package_name;
     }
