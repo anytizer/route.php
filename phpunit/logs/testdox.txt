@@ -28,4 +28,6 @@ tests\methods
 
 ping
  [x] Ping pong has timestamp
+ [x] Timestamp
+ [x] Database version
 

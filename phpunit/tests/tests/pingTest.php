@@ -32,4 +32,40 @@ class pingTest extends TestCase
         $this->assertTrue(key_exists("timestamp", $results["data"]));
         $this->assertEquals("ping", $results["data"]["message"]);
     }
+
+    /**
+     * Database driven ping for timestamp
+	 * Ensures database layer is good
+     */
+    public function testTimestamp()
+    {
+        $listURL = "{$this->api}/tests/ping/timestamp";
+
+        $relay = new relay();
+        $data = $relay->fetch($listURL);
+        $results = json_decode($data, true);
+        #print_r($results);
+
+        $this->assertTrue(key_exists("success", $results));
+        $this->assertTrue($results["success"]);
+        $this->assertTrue(key_exists("timestamp", $results["data"]));
+        $this->assertEquals("ping", $results["data"]["message"]);
+    }
+	
+	/**
+     * Database version is intact
+     */
+    public function testDatabaseVersion()
+    {
+		$expected = "10.1.13-MariaDB";
+        $versionURL = "{$this->api}/tests/ping/version";
+
+        $relay = new relay();
+        $data = $relay->fetch($versionURL);
+        $results = json_decode($data, true);
+        #print_r($results);
+		$actual = $results["data"]["version"];
+
+		$this->assertEquals($expected, $actual);
+    }
 }

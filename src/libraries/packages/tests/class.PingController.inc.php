@@ -22,6 +22,33 @@ class PingController
             "message" => "ping",
             "timestamp" => date("Y-m-d H:i:s"),
         );
+
+        return $response;
+    }
+
+    public function timestampAction()
+    {
+        /**
+         * @todo Connect to the database and read the timestamp
+         */
+        $response = array(
+            "message" => "ping",
+            "timestamp" => date("Y-m-d H:i:s"),
+        );
+
+        return $response;
+    }
+
+    public function versionAction()
+    {
+        /**
+         * @todo Connect to the database and read the database version
+         */
+        $response = array(
+            "message" => "ping",
+            "version" => "10.1.13-MariaDB",
+        );
+
         return $response;
     }
 }
